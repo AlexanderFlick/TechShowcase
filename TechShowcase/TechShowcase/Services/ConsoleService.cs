@@ -1,11 +1,14 @@
-﻿using TechShowcase.Wrappers;
+﻿using TechShowcase.Data.Models;
+using TechShowcase.Wrappers;
 
 namespace TechShowcase.Services;
 
 public interface IConsoleService
 {
     void Greeting();
-    void GetUserInput();
+    int GetAlbumIdFromInput();
+    void WritePhotoInfoFromAlbum(Album album);
+    bool CheckIfUserIsFinished();
 }
 public class ConsoleService : IConsoleService
 {
@@ -18,8 +21,22 @@ public class ConsoleService : IConsoleService
 
     public void Greeting() => _console.Write("Welcome! Give me the number of the photo album that you want to view.");
 
-    public void GetUserInput()
+    public int GetAlbumIdFromInput()
+    {
+        var response = _console.Read();
+        var validInput = int.TryParse(response, out var albumId);
+        return validInput ? albumId : 0;
+    }
+
+    public void WritePhotoInfoFromAlbum(Album album)
     {
         throw new NotImplementedException();
     }
+
+    public bool CheckIfUserIsFinished()
+    {
+        throw new NotImplementedException();
+    }
+
+
 }

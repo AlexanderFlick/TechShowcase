@@ -11,6 +11,7 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
+        services.AddSingleton<IAlbumService, AlbumService>();
         services.AddSingleton<IConsoleService, ConsoleService>();
         services.AddSingleton<IConsoleWrapper, ConsoleWrapper>();
         services.AddSingleton<IAlbumRepo, AlbumRepo>();

@@ -4,27 +4,31 @@ using TechShowcase.Services;
 namespace TechShowcase;
 public class Application : IHostedService
 {
-    // give a nice greeting :)
-
-    // take user input and retreive information
-
-    //display information
-
-    //ask if finished or if you want to view more items
     private readonly IConsoleService _console;
+    private readonly IAlbumService _albums;
 
-    public Application(IConsoleService console)
+    public Application(IConsoleService console, IAlbumService albumService)
     {
         _console = console;
+        _albums = albumService;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        _console.Greeting();
+        var finished = false;
+        while (!finished)
+        {
+            var input = _console.GetAlbumIdFromInput();
+            var photos = _albums.ById(input);
+            _console.WritePhotoInfoFromAlbum(photos);
+            finished = _console.CheckIfUserIsFinished();
+        }
+        return Task.CompletedTask;
     }
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return Task.CompletedTask;
     }
 }
