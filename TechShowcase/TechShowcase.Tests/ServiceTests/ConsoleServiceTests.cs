@@ -30,7 +30,7 @@ public class ConsoleServiceTests : AutoDataAttribute
     }
 
     [Fact]
-    public void GivenInputFromUser_WhenInvalid_ReturnZero()
+    public void GivenInputFromUser_WhenInvalid_ThenReturnZero()
     {
         var invalidInput = _fixture.Create<string>();
         _consoleMock.Setup(c => c.Read()).Returns(invalidInput);
@@ -41,7 +41,7 @@ public class ConsoleServiceTests : AutoDataAttribute
     }
 
     [Fact]
-    public void GivenInputFromUser_WhenValid_ReturnAlbumId()
+    public void GivenInputFromUser_WhenValid_ThenReturnAlbumId()
     {
         var validInput = _fixture.Create<int>();
         _consoleMock.Setup(c => c.Read()).Returns(validInput.ToString());
