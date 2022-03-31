@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
-using TechShowcase.Services;
+using PhotoAlbum.Services;
 
-namespace TechShowcase;
+namespace PhotoAlbum;
 public class Application : IHostedService
 {
     private readonly IConsoleService _console;

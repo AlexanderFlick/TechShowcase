@@ -1,7 +1,7 @@
-﻿using TechShowcase.Data;
-using TechShowcase.Data.Models;
+﻿using PhotoAlbum.Data;
+using PhotoAlbum.Data.Models;
 
-namespace TechShowcase.Services;
+namespace PhotoAlbum.Services;
 public interface IAlbumService
 {
     Album ById(int id);

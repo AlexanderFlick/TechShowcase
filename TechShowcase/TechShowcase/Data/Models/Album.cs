@@ -1,4 +1,4 @@
-﻿namespace TechShowcase.Data.Models;
+﻿namespace PhotoAlbum.Data.Models;
 public class Album
 {
     public int Id { get; set; }

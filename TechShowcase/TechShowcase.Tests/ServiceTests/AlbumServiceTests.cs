@@ -2,14 +2,15 @@
 using AutoFixture.AutoMoq;
 using FluentAssertions;
 using Moq;
+using PhotoAlbum.Data;
+using PhotoAlbum.Data.Models;
+using PhotoAlbum.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TechShowcase.Data;
 using TechShowcase.Data.Models;
-using TechShowcase.Services;
 using Xunit;
 
 namespace TechShowcase.Tests.ServiceTests;

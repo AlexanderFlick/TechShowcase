@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TechShowcase;
-using TechShowcase.Data;
-using TechShowcase.Services;
-using TechShowcase.Wrappers;
+using PhotoAlbum;
+using PhotoAlbum.Data;
+using PhotoAlbum.Services;
+using PhotoAlbum.Wrappers;
 
 CreateHostBuilder(args).Build().RunAsync();
 

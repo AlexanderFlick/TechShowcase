@@ -3,9 +3,9 @@ using AutoFixture;
 using AutoFixture.AutoMoq;
 using Moq;
 using AutoFixture.Xunit2;
-using TechShowcase.Wrappers;
-using TechShowcase.Services;
 using FluentAssertions;
+using PhotoAlbum.Wrappers;
+using PhotoAlbum.Services;
 
 namespace TechShowcase.Tests.ServiceTests;
 

@@ -1,7 +1,7 @@
-﻿using TechShowcase.Data.Models;
-using TechShowcase.Wrappers;
+﻿using PhotoAlbum.Data.Models;
+using PhotoAlbum.Wrappers;
 
-namespace TechShowcase.Services;
+namespace PhotoAlbum.Services;
 
 public interface IConsoleService
 {

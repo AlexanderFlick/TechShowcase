@@ -1,4 +1,4 @@
-﻿namespace TechShowcase.Wrappers;
+﻿namespace PhotoAlbum.Wrappers;
 
 public interface IConsoleWrapper
 {
