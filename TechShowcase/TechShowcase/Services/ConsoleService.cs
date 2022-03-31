@@ -4,6 +4,8 @@ namespace TechShowcase.Services;
 
 public interface IConsoleService
 {
+    void Greeting();
+    void GetUserInput();
 }
 public class ConsoleService : IConsoleService
 {
@@ -14,7 +16,9 @@ public class ConsoleService : IConsoleService
         _console = console;
     }
 
-    public void Greeting()
+    public void Greeting() => _console.Write("Welcome! Give me the number of the photo album that you want to view.");
+
+    public void GetUserInput()
     {
         throw new NotImplementedException();
     }
