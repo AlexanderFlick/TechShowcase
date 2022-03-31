@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechShowcase\TechShowcase.csproj" />
+    <ProjectReference Include="..\TechShowcase\PhotoAlbum.csproj" />
   </ItemGroup>
 
 </Project>
