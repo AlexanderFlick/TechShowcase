@@ -5,12 +5,7 @@ using Moq;
 using PhotoAlbum.Data;
 using PhotoAlbum.Data.Models;
 using PhotoAlbum.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechShowcase.Data.Models;
 using Xunit;
 
 namespace TechShowcase.Tests.ServiceTests;
@@ -27,7 +22,7 @@ public class AlbumServiceTests
     }
 
     [Fact]
-    public void GivenAlbum_WhenIdExists_ThenReturnAlbum()
+    public void GivenAlbumId_WhenIdExists_ThenReturnAlbum()
     {
         var randomInt = _fixture.Create<int>();
         var photos = _fixture.CreateMany<Photo>().ToList();
