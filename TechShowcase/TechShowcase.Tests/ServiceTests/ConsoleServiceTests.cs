@@ -53,9 +53,10 @@ public class ConsoleServiceTests : TestBase
     public void GivenAnAlbum_WhenPhotosPresent_ThenList()
     {
         var album = _fixture.Create<Album>();
+        var totalConsoleWrites = album.Photos.Count + 1;
 
         _sut.WritePhotoInfoFromAlbum(album);
 
-        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(1));
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(totalConsoleWrites));
     }
 }

@@ -13,25 +13,18 @@ public class AlbumRepo : IAlbumRepo
 {
     public Album ById(int id)
     {
+        var album = new Album();
         using var client = new HttpClient();
-        var uri = UriBuilder(id);
+        var uri = "https://jsonplaceholder.typicode.com/photos?albumId=" + id;
         var response = client.GetAsync(uri).Result;
 
         if (response.IsSuccessStatusCode)
         {
             var content = response.Content.ReadAsStringAsync().Result;
             var apiResponses = JsonConvert.DeserializeObject<List<AlbumApiResponse>>(content);
-            return BuildAlbumFromApiResponse(apiResponses);
+            return album.Build(apiResponses);
         }
 
-        return new Album();
-    }
-
-    public static Uri UriBuilder(int id) => new("https://jsonplaceholder.typicode.com/photos?albumId=" + id);
-
-    public static Album BuildAlbumFromApiResponse(IEnumerable<AlbumApiResponse> apiResponse)
-    {
-        var album = new Album();
-        return album.Build(apiResponse);
+        return album;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoFixture;
-using AutoFixture.AutoMoq;
 using FluentAssertions;
 using PhotoAlbum.Data;
 using PhotoAlbum.Data.Models;
@@ -7,10 +6,9 @@ using Xunit;
 
 namespace PhotoAlbum.Tests.DataTests;
 
-public class AlbumRepoTests
+public class AlbumRepoTests : TestBase
 {
     private readonly AlbumRepo _sut;
-    private readonly Fixture _fixture = (Fixture)new Fixture().Customize(new AutoMoqCustomization());
 
     public AlbumRepoTests()
     {
@@ -25,16 +23,6 @@ public class AlbumRepoTests
         var actual = AlbumRepo.UriBuilder(randomAlbumId);
 
         actual.Should().Be("https://jsonplaceholder.typicode.com/photos?albumId=" + randomAlbumId);
-    }
-
-    [Fact]
-    public void GivenResponse_WhenCollectionOfPhotos_ThenMapCorrectly()
-    {
-        var response = _fixture.CreateMany<AlbumApiResponse>(3);
-        var actual = AlbumRepo.BuildAlbumFromApiResponse(response);
-
-        actual.Should().NotBeNull();
-        actual.Photos.Should().HaveCount(3);
     }
 
     [Fact]

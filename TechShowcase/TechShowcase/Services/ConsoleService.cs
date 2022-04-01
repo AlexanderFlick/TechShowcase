@@ -1,4 +1,5 @@
-﻿using PhotoAlbum.Data.Models;
+﻿using PhotoAlbum.Data.Extensions;
+using PhotoAlbum.Data.Models;
 using PhotoAlbum.Wrappers;
 
 namespace PhotoAlbum.Services;
@@ -23,9 +24,10 @@ public class ConsoleService : IConsoleService
         _console = console;
     }
 
-    public void Greeting() => _console.Write("Welcome! Give me the number of the photo album that you want to view.");
-
-    public static string PhotoInfo(Photo photo) => $"Photo Id: {photo.Id}\nPhoto Title: {photo.Title}\n--------------------";
+    public void Greeting()
+    {
+        _console.Write("Welcome! Give me the number of the photo album that you want to view.");
+    }
 
     public int GetAlbumIdFromInput()
     {
@@ -36,8 +38,9 @@ public class ConsoleService : IConsoleService
 
     public void WritePhotoInfoFromAlbum(Album album)
     {
-        _console.Write($"[Album Id: {album.Id}]");
-        album.Photos.ForEach(photo => _console.Write(PhotoInfo(photo)));
+        _console.Write(album.Header());
+
+        album.Photos.ForEach(photo => _console.Write(photo.Info()));
     }
 
     public bool CheckIfUserIsFinished()

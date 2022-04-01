@@ -15,4 +15,9 @@ public static class AlbumExtensions
 
         return album;
     }
+
+    public static string Header(this Album album)
+    {
+        return $"[Album Id: {album.Id}]";
+    }
 }
