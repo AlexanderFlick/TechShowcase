@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace TechShowcase.Tests;
+namespace PhotoAlbum.Tests;
 public class ApplicationTests : AutoDataAttribute
 {
     public ApplicationTests()

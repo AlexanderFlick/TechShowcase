@@ -9,7 +9,7 @@ using PhotoAlbum.Tests;
 using System.Linq;
 using Xunit;
 
-namespace TechShowcase.Tests.ServiceTests;
+namespace PhotoAlbum.Tests.ServiceTests;
 public class AlbumServiceTests : TestBase
 {
     private readonly IAlbumService _sut;

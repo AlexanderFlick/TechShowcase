@@ -8,7 +8,7 @@ using PhotoAlbum.Wrappers;
 using PhotoAlbum.Services;
 using PhotoAlbum.Tests;
 
-namespace TechShowcase.Tests.ServiceTests;
+namespace PhotoAlbum.Tests.ServiceTests;
 
 public class ConsoleServiceTests : TestBase
 {
