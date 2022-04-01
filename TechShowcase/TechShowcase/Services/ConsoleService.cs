@@ -21,6 +21,8 @@ public class ConsoleService : IConsoleService
 
     public void Greeting() => _console.Write("Welcome! Give me the number of the photo album that you want to view.");
 
+    public static string PhotoInfo(Photo photo) => $"Photo Id: {photo.Id}\nPhoto Title: {photo.Title}\n--------------------";
+
     public int GetAlbumIdFromInput()
     {
         var response = _console.Read();
@@ -30,11 +32,18 @@ public class ConsoleService : IConsoleService
 
     public void WritePhotoInfoFromAlbum(Album album)
     {
-        throw new NotImplementedException();
+        _console.Write($"[Album Id: {album.Id}]");
+        album.Photos.ForEach(photo => _console.Write(PhotoInfo(photo)));
     }
 
     public bool CheckIfUserIsFinished()
     {
-        throw new NotImplementedException();
+        _console.Write("Are you finished? \nIf you type another album number, you can see your other photos");
+        var response = _console.Read();
+        if (response == "2")
+        {
+            return false;
+        }
+        return true;
     }
 }

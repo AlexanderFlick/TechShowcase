@@ -30,7 +30,7 @@ public class AlbumRepoTests
     public void GivenResponse_WhenCollectionOfPhotos_ThenMapCorrectly()
     {
         var response = _fixture.CreateMany<AlbumApiResponse>(3);
-        var actual = AlbumRepo.BuildAlbumFromResponse(response);
+        var actual = AlbumRepo.BuildAlbumFromApiResponse(response);
 
         actual.Should().NotBeNull();
         actual.Photos.Should().HaveCount(3);

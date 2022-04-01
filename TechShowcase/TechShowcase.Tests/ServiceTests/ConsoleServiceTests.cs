@@ -7,6 +7,7 @@ using FluentAssertions;
 using PhotoAlbum.Wrappers;
 using PhotoAlbum.Services;
 using PhotoAlbum.Tests;
+using PhotoAlbum.Data.Models;
 
 namespace PhotoAlbum.Tests.ServiceTests;
 
@@ -49,5 +50,15 @@ public class ConsoleServiceTests : TestBase
         var actual = _sut.GetAlbumIdFromInput();
 
         actual.Should().Be(validInput);
+    }
+
+    [Fact]
+    public void GivenAnAlbum_WhenPhotosPresent_ThenList()
+    {
+        var album = _fixture.Create<Album>();
+
+        _sut.WritePhotoInfoFromAlbum(album);
+
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(1));
     }
 }
