@@ -6,14 +6,14 @@ using AutoFixture.Xunit2;
 using FluentAssertions;
 using PhotoAlbum.Wrappers;
 using PhotoAlbum.Services;
+using PhotoAlbum.Tests;
 
 namespace TechShowcase.Tests.ServiceTests;
 
-public class ConsoleServiceTests : AutoDataAttribute
+public class ConsoleServiceTests : TestBase
 {
     private readonly ConsoleService _sut;
     private readonly Mock<IConsoleWrapper> _consoleMock;
-    private readonly Fixture _fixture = (Fixture)new Fixture().Customize(new AutoMoqCustomization());
 
     public ConsoleServiceTests()
     {

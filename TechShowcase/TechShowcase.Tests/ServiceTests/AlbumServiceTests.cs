@@ -5,15 +5,15 @@ using Moq;
 using PhotoAlbum.Data;
 using PhotoAlbum.Data.Models;
 using PhotoAlbum.Services;
+using PhotoAlbum.Tests;
 using System.Linq;
 using Xunit;
 
 namespace TechShowcase.Tests.ServiceTests;
-public class AlbumServiceTests
+public class AlbumServiceTests : TestBase
 {
     private readonly IAlbumService _sut;
     private readonly Mock<IAlbumRepo> _albumRepoMock;
-    private readonly Fixture _fixture = (Fixture)new Fixture().Customize(new AutoMoqCustomization());
 
     public AlbumServiceTests()
     {

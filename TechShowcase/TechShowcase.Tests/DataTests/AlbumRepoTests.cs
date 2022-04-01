@@ -3,7 +3,6 @@ using AutoFixture.AutoMoq;
 using FluentAssertions;
 using PhotoAlbum.Data;
 using PhotoAlbum.Data.Models;
-using System.Collections.Generic;
 using Xunit;
 
 namespace PhotoAlbum.Tests.DataTests;

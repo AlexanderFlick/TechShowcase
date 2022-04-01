@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using PhotoAlbum.Data.Models;
+﻿using PhotoAlbum.Data.Models;
 using System.Text.Json;
 
 namespace PhotoAlbum.Data;

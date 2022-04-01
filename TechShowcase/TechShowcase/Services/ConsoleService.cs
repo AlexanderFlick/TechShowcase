@@ -37,6 +37,4 @@ public class ConsoleService : IConsoleService
     {
         throw new NotImplementedException();
     }
-
-
 }
