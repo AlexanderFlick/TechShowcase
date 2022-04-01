@@ -6,12 +6,12 @@ namespace PhotoAlbum;
 public class Application : IHostedService
 {
     private readonly IConsoleService _console;
-    private readonly IAlbumService _albums;
+    private readonly IAlbumService _album;
 
     public Application(IConsoleService console, IAlbumService albumService)
     {
         _console = console;
-        _albums = albumService;
+        _album = albumService;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -21,8 +21,8 @@ public class Application : IHostedService
         while (!finished)
         {
             var input = _console.GetAlbumIdFromInput();
-            var photos = _albums.ById(input);
-            _console.WritePhotoInfoFromAlbum(photos);
+            var album = _album.ById(input);
+            _console.WriteAlbumAndPhotoInfo(album);
             finished = _console.CheckIfUserIsFinished();
         }
         return Task.CompletedTask;

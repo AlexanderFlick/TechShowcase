@@ -55,7 +55,7 @@ public class ConsoleServiceTests : TestBase
         var album = _fixture.Create<Album>();
         var totalConsoleWrites = album.Photos.Count + 1;
 
-        _sut.WritePhotoInfoFromAlbum(album);
+        _sut.WriteAlbumAndPhotoInfo(album);
 
         _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(totalConsoleWrites));
     }

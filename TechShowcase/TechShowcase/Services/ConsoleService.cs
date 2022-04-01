@@ -10,7 +10,7 @@ public interface IConsoleService
 
     int GetAlbumIdFromInput();
 
-    void WritePhotoInfoFromAlbum(Album album);
+    void WriteAlbumAndPhotoInfo(Album album);
 
     bool CheckIfUserIsFinished();
 }
@@ -36,7 +36,7 @@ public class ConsoleService : IConsoleService
         return validInput ? albumId : 0;
     }
 
-    public void WritePhotoInfoFromAlbum(Album album)
+    public void WriteAlbumAndPhotoInfo(Album album)
     {
         _console.Write(album.Header());     
         album.Photos.ForEach(photo => _console.Write(photo.Info()));
