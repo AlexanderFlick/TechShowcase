@@ -6,6 +6,7 @@ using PhotoAlbum.Data.Models;
 using Xunit;
 
 namespace PhotoAlbum.Tests.DataTests;
+
 public class AlbumRepoTests
 {
     private readonly AlbumRepo _sut;

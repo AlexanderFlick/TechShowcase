@@ -6,10 +6,14 @@ namespace PhotoAlbum.Services;
 public interface IConsoleService
 {
     void Greeting();
+
     int GetAlbumIdFromInput();
+
     void WritePhotoInfoFromAlbum(Album album);
+
     bool CheckIfUserIsFinished();
 }
+
 public class ConsoleService : IConsoleService
 {
     private readonly IConsoleWrapper _console;

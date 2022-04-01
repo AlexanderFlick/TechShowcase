@@ -2,10 +2,12 @@
 using PhotoAlbum.Data.Models;
 
 namespace PhotoAlbum.Services;
+
 public interface IAlbumService
 {
     Album ById(int id);
 }
+
 public class AlbumService : IAlbumService
 {
     private readonly IAlbumRepo _album;
@@ -14,5 +16,6 @@ public class AlbumService : IAlbumService
     {
         _album = album;
     }
+
     public Album ById(int id) => _album.ById(id);
 }

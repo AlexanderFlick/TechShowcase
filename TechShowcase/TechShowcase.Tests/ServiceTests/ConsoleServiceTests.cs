@@ -1,13 +1,10 @@
-﻿using Xunit;
-using AutoFixture;
-using AutoFixture.AutoMoq;
-using Moq;
-using AutoFixture.Xunit2;
+﻿using AutoFixture;
 using FluentAssertions;
-using PhotoAlbum.Wrappers;
-using PhotoAlbum.Services;
-using PhotoAlbum.Tests;
+using Moq;
 using PhotoAlbum.Data.Models;
+using PhotoAlbum.Services;
+using PhotoAlbum.Wrappers;
+using Xunit;
 
 namespace PhotoAlbum.Tests.ServiceTests;
 

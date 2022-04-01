@@ -6,8 +6,10 @@ public class AlbumApiResponse
 {
     [JsonProperty("albumId")]
     public int AlbumId { get; set; }
+
     [JsonProperty("id")]
     public int Id { get; set; }
+
     [JsonProperty("title")]
     public string Title { get; set; }
 

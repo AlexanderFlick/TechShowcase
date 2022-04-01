@@ -2,6 +2,7 @@
 using PhotoAlbum.Services;
 
 namespace PhotoAlbum;
+
 public class Application : IHostedService
 {
     private readonly IConsoleService _console;

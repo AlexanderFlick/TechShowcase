@@ -1,15 +1,14 @@
 ﻿using AutoFixture;
-using AutoFixture.AutoMoq;
 using FluentAssertions;
 using Moq;
 using PhotoAlbum.Data;
 using PhotoAlbum.Data.Models;
 using PhotoAlbum.Services;
-using PhotoAlbum.Tests;
 using System.Linq;
 using Xunit;
 
 namespace PhotoAlbum.Tests.ServiceTests;
+
 public class AlbumServiceTests : TestBase
 {
     private readonly IAlbumService _sut;

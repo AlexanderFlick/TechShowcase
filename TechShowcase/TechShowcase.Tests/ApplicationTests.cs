@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace PhotoAlbum.Tests;
+
 public class ApplicationTests : AutoDataAttribute
 {
     public ApplicationTests()

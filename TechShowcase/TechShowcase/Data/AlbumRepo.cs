@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using PhotoAlbum.Data.Models;
-using System.Text.Json;
 
 namespace PhotoAlbum.Data;
+
 public interface IAlbumRepo
 {
     Album ById(int id);
 }
+
 public class AlbumRepo : IAlbumRepo
 {
     public Album ById(int id)
@@ -15,7 +16,7 @@ public class AlbumRepo : IAlbumRepo
         var uri = new Uri("https://jsonplaceholder.typicode.com/photos?albumId=" + id);
         var response = client.GetAsync(uri).Result;
 
-        if(response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
             var content = response.Content.ReadAsStringAsync().Result;
             var apiResponses = JsonConvert.DeserializeObject<List<AlbumApiResponse>>(content);
