@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PhotoAlbum.Data.Extensions;
 using PhotoAlbum.Data.Models;
 
 namespace PhotoAlbum.Data;
@@ -13,7 +14,7 @@ public class AlbumRepo : IAlbumRepo
     public Album ById(int id)
     {
         using var client = new HttpClient();
-        var uri = new Uri("https://jsonplaceholder.typicode.com/photos?albumId=" + id);
+        var uri = UriBuilder(id);
         var response = client.GetAsync(uri).Result;
 
         if (response.IsSuccessStatusCode)
@@ -28,28 +29,9 @@ public class AlbumRepo : IAlbumRepo
 
     public static Uri UriBuilder(int id) => new("https://jsonplaceholder.typicode.com/photos?albumId=" + id);
 
-    public static Album BuildAlbumFromApiResponse(IEnumerable<AlbumApiResponse> albumResponse)
+    public static Album BuildAlbumFromApiResponse(IEnumerable<AlbumApiResponse> apiResponse)
     {
-        var response = albumResponse.ToList();
-        var album = new Album
-        {
-            Id = response.First().AlbumId,
-            Photos = new List<Photo>()
-        };
-
-        response.ForEach(x =>
-        {
-            var photo = new Photo
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Url = x.Url,
-                ThumbnailUrl = x.ThumbnailUrl
-            };
-
-            album.Photos.Add(photo);
-        });
-
-        return album;
+        var album = new Album();
+        return album.Build(apiResponse);
     }
 }
