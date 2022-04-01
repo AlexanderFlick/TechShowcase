@@ -19,17 +19,37 @@ public class AlbumRepo : IAlbumRepo
         {
             var content = response.Content.ReadAsStringAsync().Result;
             var albumResponse = JsonSerializer.Deserialize<List<AlbumApiResponse>>(content);
+            var validAlbum = BuildAlbumFromResponse(albumResponse);
+            return validAlbum;
         }
+
         return new Album();
     }
 
-    public Uri UriBuilder(int id)
-    {
-        throw new NotImplementedException();
-    }
+    public static Uri UriBuilder(int id) => new("https://jsonplaceholder.typicode.com/photos?albumId=" + id);
 
-    public Album BuildAlbumFromResponse(List<AlbumApiResponse> albumResponse)
+    public static Album BuildAlbumFromResponse(IEnumerable<AlbumApiResponse> albumResponse)
     {
-        throw new NotImplementedException();
+        var response = albumResponse.ToList();
+        var album = new Album
+        {
+            Id = response[0].Id,
+            Photos = new List<Photo>()
+        };
+
+        response.ForEach(x =>
+        {
+            var photo = new Photo
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Url = x.Url,
+                ThumbnailUrl = x.ThumbnailUrl
+            };
+
+            album.Photos.Add(photo);
+        });
+
+        return album;
     }
 }
