@@ -38,7 +38,7 @@ public class ConsoleService : IConsoleService
 
     public void WriteAlbumAndPhotoInfo(Album album)
     {
-        _console.Write(album.Header());     
+        _console.Write(album.Header());
         album.Photos.ForEach(photo => _console.Write(photo.Info()));
     }
 

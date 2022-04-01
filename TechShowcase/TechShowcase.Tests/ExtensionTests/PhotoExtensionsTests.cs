@@ -1,10 +1,11 @@
-﻿using PhotoAlbum.Data.Models;
-using AutoFixture;
-using Xunit;
-using PhotoAlbum.Data.Extensions;
+﻿using AutoFixture;
 using FluentAssertions;
+using PhotoAlbum.Data.Extensions;
+using PhotoAlbum.Data.Models;
+using Xunit;
 
 namespace PhotoAlbum.Tests.ExtensionTests;
+
 public class PhotoExtensionsTests : TestBase
 {
     private readonly Photo _sut;

@@ -1,6 +1,7 @@
 ﻿using PhotoAlbum.Data.Models;
 
 namespace PhotoAlbum.Data.Extensions;
+
 public static class AlbumExtensions
 {
     public static Album Build(this Album album, IEnumerable<AlbumApiResponse> apiResponse)
