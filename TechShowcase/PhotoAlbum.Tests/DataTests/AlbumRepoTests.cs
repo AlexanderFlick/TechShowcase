@@ -16,16 +16,6 @@ public class AlbumRepoTests : TestBase
     }
 
     [Fact]
-    public void GivenAnId_WhenBuildingUri_ThenBuildCorrectUri()
-    {
-        var randomAlbumId = _fixture.Create<int>();
-
-        var actual = AlbumRepo.UriBuilder(randomAlbumId);
-
-        actual.Should().Be("https://jsonplaceholder.typicode.com/photos?albumId=" + randomAlbumId);
-    }
-
-    [Fact]
     public void GivenId_WhenCallingAlbumApi_ThenReturnCorrectAlbum()
     {
         var validId = _fixture.Create<int>();
