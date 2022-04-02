@@ -13,9 +13,10 @@ const int WaitTimeForRetryInMilliseconds = 500;
 CreateHostBuilder(args).Build().RunAsync();
 
 static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((context, app) =>
+    Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration((context, app) =>
     {
-        app.AddJsonFile("appsettings.json");
+        app.AddJsonFile("appsettings.json", true);
     })
     .ConfigureServices(services =>
     {
