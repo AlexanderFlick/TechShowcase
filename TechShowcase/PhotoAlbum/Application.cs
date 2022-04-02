@@ -20,8 +20,10 @@ public class Application : IHostedService
         var finished = false;
         while (!finished)
         {
+            _console.PromptNextAlbum();
             var input = _console.GetAlbumIdFromInput();
             var album = _album.ById(input);
+            _console.GiveAlbumOverview(album);
             _console.WriteAlbumAndPhotoInfo(album);
             finished = _console.CheckIfUserIsFinished();
         }

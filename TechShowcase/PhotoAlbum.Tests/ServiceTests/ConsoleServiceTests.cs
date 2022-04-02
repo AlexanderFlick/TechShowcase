@@ -24,7 +24,7 @@ public class ConsoleServiceTests : TestBase
     {
         _sut.Greeting();
 
-        _consoleMock.Verify(c => c.Write("Welcome! Give me the number of the photo album that you want to view."), Times.Exactly(1));
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(1));
     }
 
     [Fact]
@@ -58,5 +58,35 @@ public class ConsoleServiceTests : TestBase
         _sut.WriteAlbumAndPhotoInfo(album);
 
         _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(totalConsoleWrites));
+    }
+
+    [Fact]
+    public void GivenAnAlbum_WhenWantingAnOverview_ThenReturnFormattedString()
+    {
+        var album = _fixture.Create<Album>();
+        var expected = $"Oh boy, album no. {album.Id}! I've heard scandalous things about that album." +
+            $"\nIt has {album.Photos.Count} photos, apparently. \nHit 'enter' and see what is inside. No tricks here, promise.";
+
+        _sut.GiveAlbumOverview(album);
+
+        _consoleMock.Verify(c => c.Write(expected), Times.Exactly(1));
+        _consoleMock.Verify(c => c.Read(), Times.Exactly(1));
+    }
+
+    [Fact]
+    public void GivenAppStart_WhenFirstTime_ThenDontPromptUser()
+    {
+        _sut.PromptNextAlbum();
+
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(0));
+    }
+
+    [Fact]
+    public void GivenAppStart_WhenNotFirstTime_ThenPromptUser()
+    {
+        _sut.PromptNextAlbum();
+        _sut.PromptNextAlbum();
+
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(1));
     }
 }
