@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PhotoAlbum;
 using PhotoAlbum.Data;
@@ -12,10 +13,21 @@ const int WaitTimeForRetryInMilliseconds = 500;
 CreateHostBuilder(args).Build().RunAsync();
 
 static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
+    Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((context, app) =>
+    {
+        app.AddJsonFile("appsettings.json");
+    })
     .ConfigureServices(services =>
     {
-        RegisterHttpClient(services);
+        var serviceProvider = services.BuildServiceProvider();
+        var config = serviceProvider.GetService<IConfiguration>();
+
+        services.AddHttpClient("photoAlbumApi", client =>
+        {
+            client.BaseAddress = new Uri(config.GetConnectionString("photoAlbumApi"));
+        })
+        .AddTransientHttpErrorPolicy(x =>
+            x.WaitAndRetryAsync(RetryTimes, _ => TimeSpan.FromMilliseconds(WaitTimeForRetryInMilliseconds)));
 
         services.AddSingleton<IAlbumService, AlbumService>();
         services.AddSingleton<IConsoleService, ConsoleService>();
@@ -24,13 +36,3 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
 
         services.AddHostedService<Application>();
     });
-
-static void RegisterHttpClient(IServiceCollection services)
-{
-    services.AddHttpClient("PhotoApi", client =>
-    {
-        client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
-    })
-        .AddTransientHttpErrorPolicy(x =>
-            x.WaitAndRetryAsync(RetryTimes, _ => TimeSpan.FromMilliseconds(WaitTimeForRetryInMilliseconds)));
-}
