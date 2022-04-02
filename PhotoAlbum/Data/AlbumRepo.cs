@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using PhotoAlbum.Data.Extensions;
+﻿using Newtonsoft.Json;
 using PhotoAlbum.Data.Models;
-using PhotoAlbum.Wrappers;
 
 namespace PhotoAlbum.Data;
 
@@ -27,7 +24,7 @@ public class AlbumRepo : IAlbumRepo
         var photoApiClient = _clientFactory.CreateClient("photoAlbumApi");
         var response = await photoApiClient.GetAsync($"photos?albumId={id}");
         response.EnsureSuccessStatusCode();
-        
+
         var content = response.Content.ReadAsStringAsync().Result;
         var objects = JsonConvert.DeserializeObject<List<AlbumApiResponse>>(content);
         return Build(objects!);
