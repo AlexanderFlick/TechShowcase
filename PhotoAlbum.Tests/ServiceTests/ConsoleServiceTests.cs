@@ -24,7 +24,7 @@ public class ConsoleServiceTests : TestBase
     {
         _sut.Greeting();
 
-        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(1));
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Once);
     }
 
     [Fact]
