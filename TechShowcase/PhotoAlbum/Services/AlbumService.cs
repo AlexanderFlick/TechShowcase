@@ -5,7 +5,7 @@ namespace PhotoAlbum.Services;
 
 public interface IAlbumService
 {
-    Album ById(int id);
+    Task<Album> ById(int id);
 }
 
 public class AlbumService : IAlbumService
@@ -17,8 +17,8 @@ public class AlbumService : IAlbumService
         _album = album;
     }
 
-    public Album ById(int id)
+    public async Task<Album> ById(int id)
     {
-        return _album.ById(id);
+        return await _album.ById(id);
     }
 }

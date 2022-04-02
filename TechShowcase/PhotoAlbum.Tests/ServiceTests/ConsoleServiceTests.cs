@@ -69,8 +69,8 @@ public class ConsoleServiceTests : TestBase
 
         _sut.GiveAlbumOverview(album);
 
-        _consoleMock.Verify(c => c.Write(expected), Times.Exactly(1));
-        _consoleMock.Verify(c => c.Read(), Times.Exactly(1));
+        _consoleMock.Verify(c => c.Write(expected), Times.Once);
+        _consoleMock.Verify(c => c.Read(), Times.Once);
     }
 
     [Fact]
@@ -78,7 +78,7 @@ public class ConsoleServiceTests : TestBase
     {
         _sut.PromptNextAlbum();
 
-        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(0));
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Never);
     }
 
     [Fact]
@@ -87,6 +87,6 @@ public class ConsoleServiceTests : TestBase
         _sut.PromptNextAlbum();
         _sut.PromptNextAlbum();
 
-        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Exactly(1));
+        _consoleMock.Verify(c => c.Write(It.IsAny<string>()), Times.Once);
     }
 }

@@ -5,6 +5,7 @@ using PhotoAlbum.Data;
 using PhotoAlbum.Data.Models;
 using PhotoAlbum.Services;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace PhotoAlbum.Tests.ServiceTests;
@@ -21,7 +22,7 @@ public class AlbumServiceTests : TestBase
     }
 
     [Fact]
-    public void GivenAlbumId_WhenIdExists_ThenReturnAlbum()
+    public async Task GivenAlbumId_WhenIdExists_ThenReturnAlbum()
     {
         var randomInt = _fixture.Create<int>();
         var photos = _fixture.CreateMany<Photo>().ToList();
@@ -30,9 +31,9 @@ public class AlbumServiceTests : TestBase
             Id = randomInt,
             Photos = photos
         };
-        _albumRepoMock.Setup(c => c.ById(randomInt)).Returns(validAlbum);
+        _albumRepoMock.Setup(c => c.ById(randomInt)).Returns(Task.FromResult(validAlbum));
 
-        var actual = _sut.ById(randomInt);
+        var actual = await _sut.ById(randomInt);
 
         actual.Should().BeEquivalentTo(validAlbum);
     }

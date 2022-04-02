@@ -16,16 +16,6 @@ public class AlbumExtensionsTests : TestBase
     }
 
     [Fact]
-    public void GivenCollectionOfApiResponse_ThenBuildAlbum()
-    {
-        var response = _fixture.CreateMany<AlbumApiResponse>(3);
-        var actual = _sut.Build(response);
-
-        actual.Should().NotBeNull();
-        actual.Photos.Should().HaveCount(3);
-    }
-
-    [Fact]
     public void GivenAnAlbum_WhenWritingToConsole_ThenReturnFormattedHeaderString()
     {
         var actual = _sut.Header();

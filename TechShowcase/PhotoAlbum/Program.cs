@@ -23,17 +23,18 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
         var serviceProvider = services.BuildServiceProvider();
         var config = serviceProvider.GetService<IConfiguration>();
 
+        services.AddSingleton<IAlbumService, AlbumService>();
+        services.AddSingleton<IConsoleService, ConsoleService>();
+        services.AddSingleton<IConsoleWrapper, ConsoleWrapper>();
+        services.AddSingleton<IClientWrapper, ClientWrapper>();
+        services.AddSingleton<IAlbumRepo, AlbumRepo>();
+
         services.AddHttpClient("photoAlbumApi", client =>
         {
             client.BaseAddress = new Uri(config.GetConnectionString("photoAlbumApi"));
         })
         .AddTransientHttpErrorPolicy(x =>
             x.WaitAndRetryAsync(RetryTimes, _ => TimeSpan.FromMilliseconds(WaitTimeForRetryInMilliseconds)));
-
-        services.AddSingleton<IAlbumService, AlbumService>();
-        services.AddSingleton<IConsoleService, ConsoleService>();
-        services.AddSingleton<IConsoleWrapper, ConsoleWrapper>();
-        services.AddSingleton<IAlbumRepo, AlbumRepo>();
 
         services.AddHostedService<Application>();
     });

@@ -20,6 +20,6 @@ public class PhotoExtensionsTests : TestBase
     {
         var actual = _sut.Info();
 
-        actual.Should().Be($"--------------------\nPhoto Id: {_sut.Id}\nPhoto Title: {_sut.Title}\n--------------------");
+        actual.Should().Be($"--------------------\nPhoto Id: {_sut.Id}\nPhoto Title: {_sut.Title}");
     }
 }
