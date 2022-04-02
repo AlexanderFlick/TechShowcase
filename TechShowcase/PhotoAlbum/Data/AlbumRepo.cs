@@ -14,17 +14,17 @@ public interface IAlbumRepo
 public class AlbumRepo : IAlbumRepo
 {
     private readonly Album _album;
-    private readonly IHttpClientFactory _client;
+    private readonly IHttpClientFactory _clientFactory;
 
     public AlbumRepo(IHttpClientFactory client)
     {
-        _client = client;
+        _clientFactory = client;
         _album = new Album();
     }
 
     public async Task<Album> ById(int id)
     {
-        var photoApiClient = _client.CreateClient("photoAlbumApi");
+        var photoApiClient = _clientFactory.CreateClient("photoAlbumApi");
         var response = await photoApiClient.GetAsync($"photos?albumId={id}");
         response.EnsureSuccessStatusCode();
         
