@@ -53,16 +53,6 @@ public class AlbumRepoTests : TestBase
     }
 
     [Fact]
-    public async Task GivenHttpResponse_When200_ThenReturnAlbum()
-    {
-        var actual = await _sut.ById(_apiResponse.First().AlbumId);
-
-        actual.Should().NotBeNull();
-        actual.Photos.Count.Should().Be(_apiResponse.Count());
-        actual.Id = _apiResponse.First().Id;
-    }
-
-    [Fact]
     public void GivenCollectionOfApiResponse_ThenBuildAlbum()
     {
         var response = _fixture.CreateMany<AlbumApiResponse>(3);
