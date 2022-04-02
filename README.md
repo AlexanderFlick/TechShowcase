@@ -18,6 +18,6 @@ If there you have suggestions on what I can improve on, feel free to create a PR
 - Simple polymorphism in test project
 - Utilizing Records
 
-Things to still implement:
+## Things to still implement:
 
 - valid error handling of bad input from user
