@@ -22,7 +22,7 @@ public class AlbumRepo : IAlbumRepo
 
     public Album ById(int id)
     {
-        var photoApiClient = _client.CreateClient("PhotoApi");
+        var photoApiClient = _client.CreateClient("photoAlbumApi");
         var response = photoApiClient.GetAsync($"photos?albumId={id}").Result;
         if (response is not null && response.IsSuccessStatusCode)
         {
