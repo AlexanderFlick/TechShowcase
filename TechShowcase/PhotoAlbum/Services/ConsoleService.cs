@@ -16,7 +16,7 @@ public interface IConsoleService
 
     void GiveAlbumOverview(Album album);
 
-    bool CheckIfUserIsFinished();
+    bool UserIsFinished();
 }
 
 public class ConsoleService : IConsoleService
@@ -64,7 +64,7 @@ public class ConsoleService : IConsoleService
         album.Photos.ForEach(photo => _console.Write(photo.Info()));
     }
 
-    public bool CheckIfUserIsFinished()
+    public bool UserIsFinished()
     {
         _console.Write("\nPhew! That was a lot of photos. Are you done looking at photo albums? \nPlease type 'n' if you are done, 'y' if you want to view another album.");
         var response = _console.Read();

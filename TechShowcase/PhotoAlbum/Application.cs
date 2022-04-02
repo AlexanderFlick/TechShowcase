@@ -22,7 +22,7 @@ public class Application : IHostedService
         while (!finished)
         {
             RunApplication();
-            finished = _console.CheckIfUserIsFinished();
+            finished = _console.UserIsFinished();
         }
 
         return Task.CompletedTask;

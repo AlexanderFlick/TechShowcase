@@ -5,7 +5,6 @@ using Moq.Protected;
 using Newtonsoft.Json;
 using PhotoAlbum.Data;
 using PhotoAlbum.Data.Models;
-using PhotoAlbum.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +19,7 @@ namespace PhotoAlbum.Tests.DataTests;
 public class AlbumRepoTests : TestBase
 {
     private readonly AlbumRepo _sut;
-    private readonly Mock<IClientWrapper> _mockClient;
+    private readonly Mock<IHttpClientFactory> _mockClient;
     private readonly Mock<HttpMessageHandler> _messageHandler;
     private readonly IEnumerable<AlbumApiResponse> _apiResponse;
     private readonly HttpClient _httpClient;
@@ -48,8 +47,8 @@ public class AlbumRepoTests : TestBase
         };
 
 
-        _mockClient = _fixture.Freeze<Mock<IClientWrapper>>();
-        _mockClient.Setup(c => c.CreateAlbumApiClient()).Returns(_httpClient);
+        _mockClient = _fixture.Freeze<Mock<IHttpClientFactory>>();
+        _mockClient.Setup(c => c.CreateClient(It.IsAny<string>())).Returns(_httpClient);
         _sut = _fixture.Create<AlbumRepo>();
     }
 

@@ -26,7 +26,6 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
         services.AddSingleton<IAlbumService, AlbumService>();
         services.AddSingleton<IConsoleService, ConsoleService>();
         services.AddSingleton<IConsoleWrapper, ConsoleWrapper>();
-        services.AddSingleton<IClientWrapper, ClientWrapper>();
         services.AddSingleton<IAlbumRepo, AlbumRepo>();
 
         services.AddHttpClient("photoAlbumApi", client =>

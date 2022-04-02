@@ -14,9 +14,9 @@ public interface IAlbumRepo
 public class AlbumRepo : IAlbumRepo
 {
     private readonly Album _album;
-    private readonly IClientWrapper _client;
+    private readonly IHttpClientFactory _client;
 
-    public AlbumRepo(IClientWrapper client)
+    public AlbumRepo(IHttpClientFactory client)
     {
         _client = client;
         _album = new Album();
@@ -24,7 +24,7 @@ public class AlbumRepo : IAlbumRepo
 
     public async Task<Album> ById(int id)
     {
-        var photoApiClient = _client.CreateAlbumApiClient();
+        var photoApiClient = _client.CreateClient("photoAlbumApi");
         var response = await photoApiClient.GetAsync($"photos?albumId={id}");
         response.EnsureSuccessStatusCode();
         
