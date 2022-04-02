@@ -8,18 +8,14 @@ using Polly;
 
 const int RetryTimes = 2;
 const int WaitTimeForRetryInMilliseconds = 500;
+
 CreateHostBuilder(args).Build().RunAsync();
 
 static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddHttpClient("PhotoApi", client =>
-        {
-            client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
-        })
-           .AddTransientHttpErrorPolicy(x =>
-              x.WaitAndRetryAsync(RetryTimes, _ => TimeSpan.FromMilliseconds(WaitTimeForRetryInMilliseconds)));
+        RegisterHttpClient(services);
 
         services.AddSingleton<IAlbumService, AlbumService>();
         services.AddSingleton<IConsoleService, ConsoleService>();
@@ -28,3 +24,13 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
 
         services.AddHostedService<Application>();
     });
+
+static void RegisterHttpClient(IServiceCollection services)
+{
+    services.AddHttpClient("PhotoApi", client =>
+    {
+        client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
+    })
+        .AddTransientHttpErrorPolicy(x =>
+            x.WaitAndRetryAsync(RetryTimes, _ => TimeSpan.FromMilliseconds(WaitTimeForRetryInMilliseconds)));
+}
