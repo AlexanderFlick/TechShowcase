@@ -1,7 +1,7 @@
 ﻿using AutoFixture;
-using FluentAssertions;
+using Moq;
 using PhotoAlbum.Data;
-using PhotoAlbum.Data.Models;
+using System.Net.Http;
 using Xunit;
 
 namespace PhotoAlbum.Tests.DataTests;
@@ -9,19 +9,17 @@ namespace PhotoAlbum.Tests.DataTests;
 public class AlbumRepoTests : TestBase
 {
     private readonly AlbumRepo _sut;
+    private Mock<IHttpClientFactory> _mockClient;
 
     public AlbumRepoTests()
     {
+        _mockClient = new Mock<IHttpClientFactory>();
         _sut = _fixture.Create<AlbumRepo>();
     }
 
     [Fact]
-    public void GivenId_WhenCallingAlbumApi_ThenReturnCorrectAlbum()
+    public void GivenHttpResponse_When()
     {
-        var validId = _fixture.Create<int>();
-        var expected = _fixture.Create<Album>();
-        var actual = _sut.ById(validId);
-
-        actual.Should().BeEquivalentTo(expected);
+        
     }
 }

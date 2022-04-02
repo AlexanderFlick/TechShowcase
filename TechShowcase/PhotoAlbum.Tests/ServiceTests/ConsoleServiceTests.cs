@@ -65,7 +65,7 @@ public class ConsoleServiceTests : TestBase
     {
         var album = _fixture.Create<Album>();
         var expected = $"Oh boy, album no. {album.Id}! I've heard scandalous things about that album." +
-            $"\nIt has {album.Photos.Count} photos, apparently. \nHit 'enter' and see what is inside. No tricks here, promise.";
+            $"\nYou have {album.Photos.Count} photos in that album, apparently. \nHit 'enter' and see what is inside. No tricks here, promise.";
 
         _sut.GiveAlbumOverview(album);
 

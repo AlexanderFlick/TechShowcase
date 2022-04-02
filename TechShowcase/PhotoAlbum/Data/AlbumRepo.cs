@@ -11,20 +11,25 @@ public interface IAlbumRepo
 
 public class AlbumRepo : IAlbumRepo
 {
+    private readonly Album _album;
+    private readonly IHttpClientFactory _client;
+
+    public AlbumRepo(IHttpClientFactory client)
+    {
+        _client = client;
+        _album = new Album();
+    }
+
     public Album ById(int id)
     {
-        var album = new Album();
-        using var client = new HttpClient();
-        var uri = "https://jsonplaceholder.typicode.com/photos?albumId=" + id;
-        var response = client.GetAsync(uri).Result;
-
-        if (response.IsSuccessStatusCode)
+        var photoApiClient = _client.CreateClient("PhotoApi");
+        var response = photoApiClient.GetAsync($"photos?albumId={id}").Result;
+        if (response is not null && response.IsSuccessStatusCode)
         {
             var content = response.Content.ReadAsStringAsync().Result;
-            var apiResponses = JsonConvert.DeserializeObject<List<AlbumApiResponse>>(content);
-            return album.Build(apiResponses);
+            var objects = JsonConvert.DeserializeObject<List<AlbumApiResponse>>(content);
+            return _album.Build(objects!);
         }
-
-        return album;
+        return _album;
     }
 }

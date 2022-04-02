@@ -17,5 +17,8 @@ public class AlbumService : IAlbumService
         _album = album;
     }
 
-    public Album ById(int id) => _album.ById(id);
+    public Album ById(int id)
+    {
+        return _album.ById(id);
+    }
 }

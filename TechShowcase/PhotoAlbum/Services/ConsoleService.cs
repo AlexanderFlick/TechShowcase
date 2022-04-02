@@ -54,7 +54,7 @@ public class ConsoleService : IConsoleService
     public void GiveAlbumOverview(Album album)
     {
         _console.Write($"Oh boy, album no. {album.Id}! I've heard scandalous things about that album." +
-            $"\nIt has {album.Photos.Count} photos, apparently. \nHit 'enter' and see what is inside. No tricks here, promise.");
+            $"\nYou have {album.Photos.Count} photos in that album, apparently. \nHit 'enter' and see what is inside. No tricks here, promise.");
         _console.Read();
     }
 
@@ -72,6 +72,7 @@ public class ConsoleService : IConsoleService
         {
             return true;
         }
+        _console.Write("Oh, the adventurous type, I like that.");
         return false;
     }
 }
