@@ -9,7 +9,7 @@ Tech Showcase Goals
 Things to still implement:
 
 - valid error handling of bad input from user
-- add httpclientfactory
+- ~~add httpclientfactory~~
 - ~~add some static methods to album model from album  repo and move tests~~
 - ~~cleanup/more consistent code style~~
 - ~~use records!~~
