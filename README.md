@@ -17,6 +17,7 @@ If there you have suggestions on what I can improve on, feel free to create a PR
 - Retry logic using Polly on HttpClient calls
 - Simple polymorphism in test project
 - Utilizing Records
+- Keep Cyclomatic Low, Only One Scope Per Method
 
 ## Things to still implement:
 
